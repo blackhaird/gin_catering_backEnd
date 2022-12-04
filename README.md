@@ -37,8 +37,14 @@
 
 ```json
 {
-    "user_name":"admin",
-    "user_password":123456,
+
+    "type":"post",
+    "data":[
+        {
+            "user_name":"admin",
+            "user_password":123456,
+        }
+    ]
 }
 ```
 
@@ -54,9 +60,17 @@
 
 ```json
 {
+
     "code":200,
-    "user_level":1,
-    "msg":"登录成功",
+    "data":[
+        {
+            "user_id":90001,
+            "user_name":"admin",
+            "user_password":"123456",
+            "user_level":1,
+            "msg":"登录成功",
+        }
+    ]
 }
 ```
 
@@ -76,9 +90,15 @@
 
 ```json
 {
-    "user_name":"admin",
-    "user_password":123456,
-    "user_level":1,
+
+    "type":"post",
+    "data":[
+        {
+            "user_name":"admin",
+            "user_password":123456,
+            "user_level":1,
+        }
+    ]
 }
 ```
 
@@ -95,10 +115,15 @@
 ```json
 {
     "code":200,
-    "user_name":"admin",
-    "user_password":123456,
-    "user_level":1,
-    "msg":"注册成功",
+    "data":[
+        {
+            "user_id":90001,
+            "user_name":"admin",
+            "user_password":"123456",
+            "user_level":1,
+            "msg":"登录成功",
+        }
+    ]
 }
 ```
 
@@ -119,9 +144,15 @@
 
 ```json
 {
-    "user_name":"admin",
-    "user_password":123456,
-    "user_level":1,
+    "type":"post",
+    "data":[
+        {
+            "user_name":"admin",
+            "user_password":123456,
+            "user_newassword":123456,
+            "user_level":1,
+        }
+    ]
 }
 ```
 
@@ -138,10 +169,15 @@
 ```json
 {
     "code":200,
-    "user_name":"admin",
-    "user_password":123456,
-    "user_level":1,
-    "msg":"注册成功",
+    "data":[
+        {
+            "user_id":90001,
+            "user_name":"admin",
+            "user_password":123456,
+            "user_level":1,
+            "msg":"注册成功",
+        }
+    ]
 }
 ```
 
@@ -161,10 +197,15 @@
 
 ```json
 {
-    "user_name":"admin",
-    "user_password":123456,
-    "user_changePassword":234567,
-    "user_level":1,
+    "type":"post",
+    "data":[
+        {
+            "user_name":"admin",
+            "user_password":123456,
+            "user_changePassword":234567,
+            "user_level":1,
+        }
+    ]
 }
 ```
 
@@ -181,10 +222,15 @@
 ```json
 {
     "code":200,
-    "user_name":"admin",
-    "user_changePassword":234567,
-    "user_level":1,
-    "msg":"修改成功",
+    "data":[
+        {
+            "user_id":90001,
+            "user_name":"admin",
+            "user_changePassword":234567,
+            "user_level":1,
+            "msg":"修改成功",
+        }
+    ]
 }
 ```
 
@@ -192,7 +238,7 @@
 
 ## 订单请求
 
-### 1./show_order
+### 1./order_show
 
 #### 前端：
 
@@ -220,33 +266,35 @@
 
 ```json
 {
-    {
-    "order_number":40001,
-    "customer_number":90001,
-    "customer_name":"李一",
-    "customer_age":18,
-    "customer_sex":"男",
-    "customer_contact":"12345678910",
-    "customer_address":"福建省福州市马尾区登龙路阳光学院"
-    "menu_number":30001,
-    "order_time":"2020.1.1",
-    "order_price":200.00
-    "order_rating":"好评"
-	}
-,
-	{
-    "order_number":40002,
-    "customer_number":90002,
-    "customer_name":"李二",
-    "customer_age":18,
-    "customer_sex":"男",
-    "customer_contact":"12345678910",
-    "customer_address":"福建省福州市马尾区登龙路阳光学院"
-    "menu_number":30002,
-    "order_time":"2020.1.1",
-    "order_price":300.00
-    "order_rating":"差评"
-	}
+    "data":[
+        {
+            "order_number":40001,
+            "customer_number":90001,
+            "customer_name":"李一",
+            "customer_age":18,
+            "customer_sex":"男",
+            "customer_contact":"12345678910",
+            "customer_address":"福建省福州市马尾区登龙路阳光学院"
+            "menu_number":30001,
+            "order_time":"2020.1.1",
+            "order_price":200.00
+            "order_rating":"好评"
+        }
+        ,
+        {
+            "order_number":40002,
+            "customer_number":90002,
+            "customer_name":"李二",
+            "customer_age":18,
+            "customer_sex":"男",
+            "customer_contact":"12345678910",
+            "customer_address":"福建省福州市马尾区登龙路阳光学院"
+            "menu_number":30002,
+            "order_time":"2020.1.1",
+            "order_price":300.00
+            "order_rating":"差评"
+        }
+    ]
 }
 ```
 

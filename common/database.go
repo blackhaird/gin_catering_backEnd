@@ -6,15 +6,26 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-var db, err = sql.Open("mysql", "root:123456@tcp(127.0.0.1:3306)/catering?charset=utf8")
+var (
+	userName  string = "root"
+	password  string = "123456"
+	ipAddress string = "127.0.0.1"
+	port      int    = 3306
+	dbName    string = "catering"
+	charset   string = "utf8"
+)
 
-func InitDB() {
+var dsn = fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=%s", userName, password, ipAddress, port, dbName, charset)
+
+var db, err = sql.Open("mysql", dsn)
+
+func InitDB() *sql.DB {
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("mysql connect failed, detail is [%v]", err.Error())
 	} else {
-		fmt.Println("database connect success")
+		fmt.Println("use catering database connect success")
 	}
-	return
+	return db
 }
 
 func GetDB() *sql.DB {
