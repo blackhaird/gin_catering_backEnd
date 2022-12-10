@@ -8,6 +8,6 @@ type User struct {
 }
 
 type PostUser struct {
-	id   string        `json:"post_id"`
-	User []interface{} `json:"data"`
+	PostId string `json:"post_id"`
+	User   []User `json:"data"`
 }
