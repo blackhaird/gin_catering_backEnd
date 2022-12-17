@@ -1,10 +1,9 @@
 package model
 
 type Admin struct {
-	AdminID       int    `json:"Admin_id" form:"Admin_id"`
-	AdminName     string `json:"Admin_name" form:"Admin_name"`
-	AdminPassword string `json:"Admin_password" form:"Admin_password"`
-	AdminLevel    int    `json:"Admin_level" form:"Admin_level"`
+	AdminNo       int    `json:"admin_no"`
+	UserID        string `json:"user_id" `
+	AdminPassword int    `json:"admin_password" `
 }
 
 type PostAdmin struct {

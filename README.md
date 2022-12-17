@@ -20,15 +20,13 @@
 
 # 请求
 
-## 用户请求（即将修改，先不动）
+## 用户请求
 
-
-
-### 1./user_login（登录请求）
+### 1.user_login（登录请求）
 
 #### 前端：
 
-type:
+post_id:
 
 | 名称 | 数据类型 | 说明             |
 | ---- | -------- | ---------------- |
@@ -36,51 +34,41 @@ type:
 
 data:
 
-| 名称 | 数据类型 | 说明 |
-| ---- | -------- | ---- |
-| 账号 | String   |      |
-| 密码 | int      |      |
+| 名称 | 数据类型 | 说明           |
+| ---- | -------- | -------------- |
+| 账号 | String   | user_id        |
+| 密码 | int      | admin_password |
 
 ```json
 {
-    "type":"post",
-    "data":[
+    "post_id": 2,
+    "data": [
         {
-            "user_name":"admin",
-            "user_password":123456,
+            "user_id": "admin",
+            "admin_password": 123456
         }
     ]
 }
 ```
-
-#### 数据库：
-
-查询是否拥有该管理员
-
-| 管理员编号 | 账号 | 密码 | 授权等级 |
-| ---------- | ---- | ---- | -------- |
-|            |      |      |          |
 
 #### 返回数据：
 
 ```json
 {
-    "code":200,
-    "data":[
-        {
-            "user_id":90001,
-            "user_name":"admin",
-            "user_password":"123456",
-            "user_level":1,
-            "msg":"登录成功",
-        }
-    ]
+  "code": 200,
+  "data": [
+    {
+      "admin_no": 1,
+      "admin_password": 123456,
+      "uesr_id": "admin"
+    }
+  ]
 }
 ```
 
 
 
-### 2./user_register
+### 2./user_register（舍弃）
 
 #### 前端：
 
@@ -132,7 +120,7 @@ data:
 
 
 
-### 3./user_changePassword
+### 3./user_changePassword（舍弃）
 
 #### 前端：
 
@@ -186,7 +174,7 @@ data:
 
 ### 
 
-### 4./user_delete（可舍弃）
+### 4./user_delete（舍弃）
 
 #### 前端：
 
@@ -502,7 +490,7 @@ data:
 }
 ```
 
-#### 返回数据：（bug：返回的id号不是更新的id）
+#### 返回数据：（修复bug）
 
 ```json
 {
@@ -531,7 +519,7 @@ data:
 
 ## 菜单请求：
 
-### 1./Dish_show
+### 1./dish_show
 
 #### 前端：
 
@@ -614,12 +602,9 @@ data:
 }
 ```
 
-### 3./dish_delete（有bug）
+### 3./dish_delete（外键限制问题，放弃）
 
-#### 前端：
 
-```json
-```
 
 ### 4./dish_add
 
@@ -633,11 +618,11 @@ post_id:
 
 data:
 
-| 名称     | 数据类型 | 说明       |
-| -------- | -------- | ---------- |
-| 菜单名称 | string   | dish_name  |
-| 菜单价格 | int      | dish_price |
-| 菜单味道 | string   | dish_taste |
+| 名称     | 数据类型 | 说明       | 备注                 |
+| -------- | -------- | ---------- | -------------------- |
+| 菜单名称 | string   | dish_name  |                      |
+| 菜单价格 | int      | dish_price |                      |
+| 菜单味道 | string   | dish_taste | (酸，甜，苦，辣，咸) |
 
 ```json
 {
@@ -668,4 +653,3 @@ data:
 }
 ```
 
-### 

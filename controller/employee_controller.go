@@ -72,10 +72,26 @@ func Employee_add(ctx *gin.Context) {
 				"msg":  "insert sql is error",
 			})
 		} else {
+			sqlStr := "select * from employee where name = ? and age = ? and gender = ? and enterTime = ?;"
+			row := db.QueryRow(sqlStr,
+				jsoninfo.Employee[0].EmployeeName,
+				jsoninfo.Employee[0].EmployeeAge,
+				jsoninfo.Employee[0].EmployeeGender,
+				jsoninfo.Employee[0].EmployeeEnterTime)
+			var employee model.Employee
+			row.Scan(&employee.EmployeeNo,
+				&employee.EmployeeName,
+				&employee.EmployeeAge,
+				&employee.EmployeeGender,
+				&employee.EmployeeEnterTime,
+				&employee.EmployeeAddress,
+				&employee.EmployeePost,
+				&employee.EmployeeSalary,
+				&employee.EmployeePower)
 			ctx.JSON(http.StatusOK, gin.H{
 				"code": 422,
 				"msg":  "新增成功",
-				"data": jsoninfo,
+				"data": employee,
 			})
 		}
 	}
