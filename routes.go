@@ -7,9 +7,11 @@ import (
 
 func CollectRoute(gin_server *gin.Engine) *gin.Engine {
 	gin_server.POST("/user_login", controller.Admin_login)
+	gin_server.POST("/user_add", controller.User_add)
 
 	gin_server.GET("/order_show", controller.Order_show)
 
+	gin_server.GET("/employee_show", controller.Employee_show)
 	gin_server.POST("/employee_chancePost", controller.Employee_chancePost)
 	gin_server.POST("/employee_delete", controller.Employee_delete)
 	gin_server.POST("/employee_add", controller.Employee_add)

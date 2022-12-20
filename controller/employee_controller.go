@@ -8,6 +8,39 @@ import (
 	"net/http"
 )
 
+func Employee_show(ctx *gin.Context) {
+	rows, err := db.Query("select * from employee;")
+	if err != nil {
+		fmt.Println("sql: select * from employee is fail")
+		ctx.JSON(http.StatusUnprocessableEntity, gin.H{
+			"code": 422,
+			"msg":  "sql语句执行出现问题，返回数据为空",
+		})
+		return
+	}
+	employees := make([]model.Employee, 0)
+	for rows.Next() {
+		var employee model.Employee
+		rows.Scan(&employee.EmployeeNo,
+			&employee.EmployeeName,
+			&employee.EmployeeAge,
+			&employee.EmployeeGender,
+			&employee.EmployeeEnterTime,
+			&employee.EmployeeAddress,
+			&employee.EmployeePost,
+			&employee.EmployeeSalary,
+			&employee.EmployeePower)
+		employees = append(employees, employee)
+	}
+	if err = rows.Err(); err != nil {
+		log.Fatalln(err)
+	}
+	ctx.JSON(200, gin.H{
+		"code": 200,
+		"data": employees,
+	})
+}
+
 func Employee_chancePost(ctx *gin.Context) {
 	var jsoninfo model.PostEmployee
 	if err := ctx.ShouldBind(&jsoninfo); err != nil {
@@ -71,6 +104,7 @@ func Employee_add(ctx *gin.Context) {
 				"code": 422,
 				"msg":  "insert sql is error",
 			})
+			return
 		} else {
 			sqlStr := "select * from employee where name = ? and age = ? and gender = ? and enterTime = ?;"
 			row := db.QueryRow(sqlStr,
